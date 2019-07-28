@@ -10,10 +10,9 @@ class HomePage extends Component {
 
 constructor(props){
   super(props);
-  if(AsyncStorage.getItem("token") !== null && AsyncStorage.getItem("token") !== undefined){
-    alert("You are already logged in!, ", AsyncStorage.getItem("token"))
-  }
-  this.state = ({currentView: <Login></Login>});
+  AsyncStorage.getItem("userdata").then((err, result) => {
+    this.state = {userdata: result, currentView: <Login></Login>};
+  })
 }
 
 

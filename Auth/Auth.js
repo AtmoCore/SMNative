@@ -36,17 +36,14 @@
       //alert("Successfully logged in, "+response.data.user.username)
       AsyncStorage.setItem("userdata", JSON.stringify(response.data.user))
       AsyncStorage.setItem("token", response.data.token)
-      
       AsyncStorage.getItem('token', (err, result) => {
        result;
       })
-
     }else{
       alert("Error logging in")
       AsyncStorage.removeItem("token")
     }
     })
-  
   }
 
   const Login = () => {
@@ -64,12 +61,12 @@
   }
 
 class Auth extends Component {
-
-  
   constructor(props){
     super(props);
     if(AsyncStorage.getItem("token") !== null && AsyncStorage.getItem("token") !== undefined){
-      alert("You are already logged in!, ", AsyncStorage.getItem("token"))
+      AsyncStorage.getItem("token").then((err, result) => {
+          alert("You are already logged in!, ",result.username)
+      })
     }
     this.state = ({currentView: <Login></Login>});
   }
@@ -89,18 +86,15 @@ class Auth extends Component {
           <View>
             <Text style={styles.loginHeader}>Please Log in/Register</Text>
           </View>
-
       <View style={styles.contents}>
           <View style={styles.authDiv}>
             <View style={styles.authOption}>
-
               <TouchableOpacity onPress={this.pressedLogin} style={styles.authOptionButton}>
                 <Text>Login</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.pressedRegister} style={styles.authOptionButton}>
                 <Text>Register</Text>
               </TouchableOpacity>
-
             </View>
             {this.state.currentView}
           </View>
