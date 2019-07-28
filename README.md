@@ -4,3 +4,5 @@ Official ChatPac source code saved on Github. Copyright reserved by AtmoCore, In
 I am about to commit that
 
 this is a private test message.
+
+another test message.
